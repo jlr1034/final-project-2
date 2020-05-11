@@ -1,0 +1,71 @@
+Question
+Curl -LO ftp://ftp.ensembl.org/pub/release-100/fasta/ursus_maritimus/pep/Ursus_maritimus.UrsMar_1.0.pep.all.fa.gz
+Curl -LO ftp://ftp.ensembl.org/pub/release-100/fasta/gorilla_gorilla/pep/Gorilla_gorilla.gorGor4.pep.all.fa.gz
+Curl -LO ftp://ftp.ensembl.org/pub/release-100/fasta/equus_callabus/pep/Equus_caballus.EquCab3.0.pep.all.fa.gz
+Curl -LO ftp://ftp.ensembl.org/pub/release-100/fasta/sus_scrofa/pep/Sus_scrofa.Sscrofa11.1.pep.all.fa.gz
+Curl -LO ftp://ftp.ensembl.org/pub/release-100/fasta/mus_musculus/pep/Mus_musculus.GRCm38.pep.all.fa.gz
+Curl -LO ftp://ftp.ensembl.org/pub/release-100/fasta/vicugna_pacos/pep/Vicugna_pacos.vicPac1.pep.all.fa.gz
+Curl -LO ftp://ftp.ensembl.org/pub/release-100/fasta/panthera_tigris_altaica/pep/Panthera_tigris_altaica.PanTig1.0.pep.all.fa.gz
+Curl -LO ftp://ftp.ensembl.org/pub/release-100/fasta/panthera_leo/pep/Panthera_leo.PanLeo1.0.pep.all.fa.gz
+Curl -LO ftp://ftp.ensembl.org/pub/release-100/fasta/bos_taurus/pep/Bos_taurus.ARS-UCD1.2.pep.all.fa.gz
+Curl -LO ftp://ftp.ensembl.org/pub/release-100/fasta/felis_catus/pep/Felis_catus.Felis_catus_9.0.pep.all.fa.gz
+# download files 
+
+gzip -d Ursus_maritimus.UrsMar_1.0.pep.all.fa.gz
+gzip -d Gorilla_gorilla.gorGor4.pep.all.fa.gz
+gzip -d Equus_caballus.EquCab3.0.pep.all.fa.gz
+gzip -d Sus_scrofa.Sscrofa11.1.pep.all.fa.gz
+gzip -d Mus_musculus.GRCm38.pep.all.fa.gz
+gzip -d Vicugna_pacos.vicPac1.pep.all.fa.gz
+gzip -d Panthera_tigris_altaica.PanTig1.0.pep.all.fa.gz
+gzip -d Panthera_leo.PanLeo1.0.pep.all.fa.gz
+gzip -d Bos_taurus.ARS-UCD1.2.pep.all.fa.gz
+gzip -d Felis_catus.Felis_catus_9.0.pep.all.fa.gz
+# unzip files 
+
+awk '{if(NR==1) {print $0} else {if($0 ~ /^>/) {print "\n"$0} else {printf $0}}}' Ursus_maritimus.UrsMar_1.0.pep.all.fa > polarbearunwrap.fa
+awk '{if(NR==1) {print $0} else {if($0 ~ /^>/) {print "\n"$0} else {printf $0}}}' Gorilla_gorilla.gorGor4.pep.all.fa > gorillaunwrap.fa
+awk '{if(NR==1) {print $0} else {if($0 ~ /^>/) {print "\n"$0} else {printf $0}}}' Equus_caballus.EquCab3.0.pep.all.fa > horseunwrap.fa
+awk '{if(NR==1) {print $0} else {if($0 ~ /^>/) {print "\n"$0} else {printf $0}}}' Sus_scrofa.Sscrofa11.1.pep.all.fa > pigunwrap.fa
+awk '{if(NR==1) {print $0} else {if($0 ~ /^>/) {print "\n"$0} else {printf $0}}}' Mus_musculus.GRCm38.pep.all.fa > mouseunwrap.fa
+awk '{if(NR==1) {print $0} else {if($0 ~ /^>/) {print "\n"$0} else {printf $0}}}' Vicugna_pacos.vicPac1.pep.all.fa > alpacaunwrap.fa
+awk '{if(NR==1) {print $0} else {if($0 ~ /^>/) {print "\n"$0} else {printf $0}}}' Panthera_tigris_altaica.PanTig1.0.pep.all.fa > tigerunwrap.fa
+awk '{if(NR==1) {print $0} else {if($0 ~ /^>/) {print "\n"$0} else {printf $0}}}' Panthera_leo.PanLeo1.0.pep.all.fa > lionunwrap.fa
+awk '{if(NR==1) {print $0} else {if($0 ~ /^>/) {print "\n"$0} else {printf $0}}}' Bos_taurus.ARS-UCD1.2.pep.all.fa > cowunwrap.fa
+awk '{if(NR==1) {print $0} else {if($0 ~ /^>/) {print "\n"$0} else {printf $0}}}' Felis_catus.Felis_catus_9.0.pep.all.fa > catunwrap.fa
+# unwrap files 
+
+grep -A 1 "agouti" polarbearunwrap.fa > apolarbear.fa
+grep -A 1 "agouti" gorillaunwrap.fa > agorilla.fa
+grep -A 1 "agouti" horseunwrap.fa > ahorse.fa
+grep -A 1 "agouti" pigunwrap.fa > apig.fa
+grep -A 1 "agouti" mouseunwrap.fa > amouse.fa
+grep -A 1 "agouti" alpacaunwrap.fa > aalpaca.fa
+grep -A 1 "agouti" tigerunwrap.fa > atiger.fa
+grep -A 1 "agouti" lionunwrap.fa > alion.fa
+grep -A 1 "agouti" cowunwrap.fa > acow.fa
+grep -A 1 "agouti" catunwrap.fa > acat.fa 
+#pull out agouti gene from each animal 
+
+awk '/^>/{print ">apolarbear.fa" ++i; next}{print}' apolarbear.fa > headapolarbear.fa  
+awk '/^>/{print ">agorilla.fa" ++i; next}{print}' agorilla.fa > headagorilla.fa  
+awk '/^>/{print ">ahorse.fa" ++i; next}{print}' ahorse.fa > headahorse.fa  
+awk '/^>/{print ">apig.fa" ++i; next}{print}' apig.fa > headapig.fa  
+awk '/^>/{print ">amouse.fa" ++i; next}{print}' amouse.fa > headamouse.fa  
+awk '/^>/{print ">aalpaca.fa" ++i; next}{print}' aalpaca.fa > headaalpaca.fa  
+awk '/^>/{print ">atiger.fa" ++i; next}{print}' atiger.fa > headatiger.fa  
+awk '/^>/{print ">alion.fa" ++i; next}{print}' alion.fa > headalion.fa  
+awk '/^>/{print ">acow.fa" ++i; next}{print}' acow.fa > headacow.fa  
+awk '/^>/{print ">acat.fa" ++i; next}{print}' acat.fa > headacat.fa  
+#pulling headers from each agouti file
+
+cat headapolarbear.fa headagorilla.fa headahorse.fa headapig.fa headamouse.fa headaalpaca.fa headatiger.fa headalion.fa headacow.fa headacat.fa > allheaders.fa
+#put all the headers from each agouti headers file into a combined file
+
+mafft --auto allheaders.fa > outputallheaders.fa 
+#MSA
+
+iqtree -s outputallheaders.fa -m LG -bb 1000 -pre output
+#use of iqtree to make tree
+
+cat output.contree
