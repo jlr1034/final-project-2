@@ -1,4 +1,5 @@
-Question
+This experiment was done to examine how the number of copies of a gene can vary depending on the species. The experiment is testing for the agouti gene, a gene that determines coat color of mammals. 
+
 Curl -LO ftp://ftp.ensembl.org/pub/release-100/fasta/ursus_maritimus/pep/Ursus_maritimus.UrsMar_1.0.pep.all.fa.gz
 Curl -LO ftp://ftp.ensembl.org/pub/release-100/fasta/gorilla_gorilla/pep/Gorilla_gorilla.gorGor4.pep.all.fa.gz
 Curl -LO ftp://ftp.ensembl.org/pub/release-100/fasta/equus_callabus/pep/Equus_caballus.EquCab3.0.pep.all.fa.gz
